@@ -32,7 +32,7 @@ namespace ModelObjet
             }
             if (uneCategorie == "Informatique")
             {
-                return 1000;
+                return 1000; 
             }
         }
         // Permet de retourner le total remboursé en fonction de tous les critères
