@@ -11,8 +11,8 @@ namespace ProjetDeTests
         public void ValiderTest()
         {
             // Le nombre de jours d'achat est < à 30 jours
-            const int nbJours1 = 25;
-            Assert.AreEqual(true, Condition.Valider(nbJours1));
+            bool nbJours1 = Condition.Valider(20);
+            Assert.AreEqual(true, nbJours1);
 
             // Le nombre de jours d'achat est > à 30 jours
             const int nbJours2 = 35;
@@ -40,9 +40,13 @@ namespace ProjetDeTests
         public void CalculerMontantRembourseTest()
         {
             // Un livre achété 24 euros depuis 15 jours avec un état "Très abimé" en étant non membre
-
+            double remboursement1 = Condition.CalculerMontantRembourse(15, "Livre", false, "Très abimé", 24);
+            Assert.AreEqual(12, remboursement1);
 
             // Un livre achété 24 euros depuis 15 jours avec un état "Bon" en étant membre
+            double remboursement2 = Condition.CalculerMontantRembourse(15, "Livre", true, "Bon", 24);
+            Assert.AreEqual(21,6, remboursement2);
+
 
         }
 

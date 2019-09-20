@@ -44,21 +44,33 @@ namespace ModelObjet
         {
             if (Valider(unNbDeJours))
             {
-                return CalculerMontantMax(uneCategorie) + CalculerReductionMembre(estMembre) + CalculerReduction(unEtat);
-                //return prix;
+                if (unPrix < CalculerMontantMax(uneCategorie))
+                {
+                    return unPrix * (1 - (CalculerReductionMembre(estMembre) + CalculerReduction(unEtat)));
+                }
+                if (unPrix > CalculerMontantMax(uneCategorie))
+                {
+                    return CalculerMontantMax(uneCategorie) * (1 - (CalculerReductionMembre(estMembre) + CalculerReduction(unEtat)));
+                }
+                else
+                {
+                    return 0;
+                }
             }
-            return 0;
-            //return 0;
+            else
+            {
+                return 0;
+            }
 
         }
         // Permet de renvoyer la réduction si on est membre ou pas
         public static double CalculerReductionMembre(bool estMembre)
         {
-            if (!estMembre)
+            if (!estMembre) 
             {
                 return 0.2;
             }
-            else
+            else 
             {
                 return 0;
             }
