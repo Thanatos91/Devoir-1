@@ -82,9 +82,13 @@ namespace ModelObjet
             {
                 return 0.3;
             }
-            else
+            if (unEtat == "Bon")
             {
                 return 0.1;
+            }
+            else
+            {
+                return 0;
             }
         }
     }

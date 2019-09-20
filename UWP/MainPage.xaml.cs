@@ -31,15 +31,45 @@ namespace UWP
             this.InitializeComponent();
         }
 
-        private  void CmdValider_Click(object sender, RoutedEventArgs e)
+        private async void CmdValider_Click(object sender, RoutedEventArgs e)
         {
             // Case remplie
 
-            //On test si l'utilisateur a saisi un prix 
+            //On teste si l'utilisateur a saisi un prix 
             if (txtPrix.Text == "")
             {
                 var dialog = new MessageDialog("Saisir le prix");
                 await dialog.ShowAsync();
+            }
+            else
+            {
+                //On teste si l'utilisateur a sélectionné un statut (Membre ou pas)
+                if (rbOui.IsChecked == false && rbNon.IsChecked == false)
+                {
+                    var dialog = new MessageDialog("Saisir si vous êtes membre");
+                    await dialog.ShowAsync();
+                }
+                else
+                {
+                    bool membre = false;
+                    if (rbOui.IsChecked == true)
+                    {
+                        membre = true;
+                    }
+                    if (rbNon.IsChecked == false)
+                    {
+                        membre = false;
+                    }
+
+                    //Maintenant, on fait le remboursement
+                    lblRemboursement.Text = Condition.CalculerMontantRembourse(
+                        lblNbJours.Value,
+                        cboCategories.SelectedItem.ToString(),
+                        rbOui.IsChecked == true,
+                        cboEtats.SelectedItem.ToString(),
+                        Convert.ToInt16(txtPrix)) ;
+
+                }
             }
         }
 

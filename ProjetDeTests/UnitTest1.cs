@@ -47,7 +47,6 @@ namespace ProjetDeTests
             double remboursement2 = Condition.CalculerMontantRembourse(15, "Livre", true, "Bon", 24);
             Assert.AreEqual(21,6, remboursement2);
 
-
         }
 
         [TestMethod()]
