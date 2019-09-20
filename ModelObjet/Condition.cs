@@ -34,22 +34,46 @@ namespace ModelObjet
             {
                 return 1000; 
             }
+            else
+            {
+                return 0;
+            }
         }
         // Permet de retourner le total remboursé en fonction de tous les critères
         public static double CalculerMontantRembourse(int unNbDeJours, string uneCategorie, bool estMembre, string unEtat, int unPrix)
         {
+            if (Valider(unNbDeJours))
+            {
+                return CalculerMontantMax(uneCategorie) + CalculerReductionMembre(estMembre) + CalculerReduction(unEtat);
+                //return prix;
+            }
             return 0;
+            //return 0;
 
         }
         // Permet de renvoyer la réduction si on est membre ou pas
         public static double CalculerReductionMembre(bool estMembre)
         {
-            return 0;
+            if (!estMembre)
+            {
+                return 0.2;
+            }
+            else
+            {
+                return 0;
+            }
         }
         // Permet de renvoyer la réduction en fonction de l'état de l'achat
         public static double CalculerReduction(string unEtat)
         {
-            return 0;
+            if (unEtat == "Abimé" || unEtat == "Très abimé")
+            {
+                return 0.3;
+            }
+            else
+            {
+                return 0.1;
+            }
         }
     }
 }
